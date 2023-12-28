@@ -17,6 +17,7 @@
         <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
         <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.4" />
         <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="7.0.10" />
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     </ItemGroup>
 
 
@@ -29,6 +30,9 @@
 
     <ItemGroup>
       <Folder Include="Features\Location\" />
+      <Folder Include="Features\UserType\Commands\CreateUserType\" />
+      <Folder Include="Features\UserType\Commands\UpdateUserType\" />
+      <Folder Include="Features\UserType\Queries\" />
     </ItemGroup>
 
 

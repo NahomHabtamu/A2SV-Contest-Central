@@ -8,7 +8,7 @@ namespace Persistence.Repositories;
 public class LocationRepository : GenericRepository<LocationEntity>, ILocationRepository
 {
     private readonly AppDBContext _dbContext;
-    protected LocationRepository(AppDBContext dbContext) : base(dbContext)
+    public LocationRepository(AppDBContext dbContext) : base(dbContext)
     {
         _dbContext = dbContext;
     }

@@ -14,9 +14,15 @@ public class QuestionRepository : GenericRepository<QuestionEntity>, IQuestionRe
         _dbContext = dbContext;
     }
 
-    public Task<bool> ExistsByGlobalQuestionUrl(string globalQuestionUrl)
+    public async Task<bool> ExistsByGlobalQuestionUrl(string globalQuestionUrl)
     {
-        return _dbContext.Questions.AnyAsync(q => q.GlobalQuestionUrl == globalQuestionUrl);
+        return await _dbContext.Questions.AnyAsync(q => q.GlobalQuestionUrl == globalQuestionUrl);
     }
     
+    public async Task<IReadOnlyList<QuestionEntity>> GetQuestionsFromContestAsync(Guid contestId)
+    {
+        return await _dbContext.Questions.Where(q => q.ContestId == contestId).ToListAsync();
+    }
+    
+
 }

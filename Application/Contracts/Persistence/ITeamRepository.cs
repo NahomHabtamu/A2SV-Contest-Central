@@ -5,5 +5,4 @@ namespace Application.Contracts.Persistence;
 
 public interface ITeamRepository : IGenericRepository<TeamEntity>
 {
-    
 }

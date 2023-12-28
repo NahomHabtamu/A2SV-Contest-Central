@@ -18,7 +18,8 @@ public class CheckDuplicateQuestionHandler : IRequestHandler<CheckDuplicateQuest
     public async Task<bool> Handle(CheckDuplicateQuestionRequest request, CancellationToken cancellationToken)
     {
         var question = await _questionRepository.ExistsByGlobalQuestionUrl(request.GlobalQuestionUrl);
-        return question != null;
+        
+        return question;
     }
     
     

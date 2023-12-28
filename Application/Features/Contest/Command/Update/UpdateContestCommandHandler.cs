@@ -49,3 +49,5 @@ public class UpdateContestCommandHandler : IRequestHandler<UpdateContestCommand,
         return Unit.Value;
     }
 }
+
+

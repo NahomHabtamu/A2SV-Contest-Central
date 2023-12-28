@@ -1,6 +1,7 @@
 ﻿using Application.DTOs.Question;
 using Application.Features.Question.Queries.CheckDuplicate;
 using Application.Features.Question.Queries.GetAll;
+using Application.Features.Question.Queries.GetQuestionsFromContest;
 using Application.Features.Question.Queries.GetSingle;
 using Microsoft.AspNetCore.Mvc;
 using MediatR;
@@ -41,5 +42,15 @@ public class QuestionController : ControllerBase
         var question = await _mediator.Send(new CheckDuplicateQuestionRequest { GlobalQuestionUrl = questionText });
         
         return Ok(question);
+    }
+
+    [HttpGet]
+    [Route("GetQuestionsFromContest")]
+    public async Task<ActionResult<IReadOnlyList<QuestionResponseDto>>> GetQuestionsFromContest(Guid contestId)
+    {
+        var questions = await _mediator.Send(new GetQuestionsFromContestRequest { ContestId = contestId });
+
+        return Ok(questions);
+
     }
 }

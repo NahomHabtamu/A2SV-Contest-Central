@@ -19,6 +19,7 @@ namespace Domain.Entities
         public string Country { get; set; } = string.Empty;
         public string City { get; set; } = string.Empty;
         public string Season { get; set; } = string.Empty;
+        public bool Status { get; set; }
         
         public List<QuestionEntity> Questions { get; set; } = new List<QuestionEntity>();
         public List<ContestGroupEntity> ContestGroups { get; set; } = new List<ContestGroupEntity>();

@@ -16,9 +16,9 @@ public class GetAllLocationsQueryHandler : IRequestHandler<GetAllLocationsQuery,
         _unitOfWork = unitOfWork;
     }
 
-    public Task<List<LocationResponseDto>> Handle(GetAllLocationsQuery request, CancellationToken cancellationToken)
+    public async Task<List<LocationResponseDto>> Handle(GetAllLocationsQuery request, CancellationToken cancellationToken)
     {
-        var locations = _unitOfWork.LocationRepository.GetAllAsync();
-        return _mapper.Map<Task<List<LocationResponseDto>>>(locations);
+        var locations = await _unitOfWork.LocationRepository.GetAllAsync();
+        return _mapper.Map<List<LocationResponseDto>>(locations);
     }
 }

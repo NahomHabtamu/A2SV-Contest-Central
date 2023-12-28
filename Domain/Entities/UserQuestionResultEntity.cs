@@ -6,7 +6,7 @@ public class UserQuestionResultEntity : BaseDomainEntity
 {
     public double Points { get; set; }
     public int RejectedAttemptCount { get; set; }
-    public int BestSubmissionTimeSeconds { get; set; }
+    public string BestSubmissionTimeSeconds { get; set; }
     
     public Guid UserId { get; set; }
     public UserEntity User { get; set; } = null!;

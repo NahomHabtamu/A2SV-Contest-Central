@@ -1,6 +1,6 @@
 ﻿using Application.DTOs.Common;
-using Application.DTOs.QuestionResult;
 using Application.DTOs.TeamQuestionResult;
+using Application.DTOs.UserQuestionResult;
 
 namespace Application.DTOs.Question;
 
@@ -14,7 +14,7 @@ public class QuestionResponseDto : BaseDto
     
     public string Index { get; set; } = string.Empty;
     
-    public List<UserQuestionResultResponseDto> UserQuestionResults { get; set; } = new List<UserQuestionResultResponseDto>();
+    public List<UserQuestionsResultResponseDto> UserQuestionResults { get; set; } = new List<UserQuestionsResultResponseDto>();
     
     public List<TeamQuestionResultResponseDto> TeamQuestionResults { get; set; } = new List<TeamQuestionResultResponseDto>();
 }
