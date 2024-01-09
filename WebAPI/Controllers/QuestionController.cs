@@ -38,9 +38,9 @@ public class QuestionController : ControllerBase
     
     [HttpGet]
     [Route("CheckDuplicate")]
-    public async Task<ActionResult<bool>> CheckDuplicate(string questionText)
+    public async Task<ActionResult<bool>> CheckDuplicate(string questionUrl)
     {
-        var question = await _mediator.Send(new CheckDuplicateQuestionRequest { GlobalQuestionUrl = questionText });
+        var question = await _mediator.Send(new CheckDuplicateQuestionRequest { GlobalQuestionUrl = questionUrl });
         
         return Ok(question);
     }

@@ -212,21 +212,44 @@ namespace Application.MappingProfile
                 .ForMember(dest => dest.ModifiedAt, opt => opt.MapFrom(src => src.ModifiedAt));
             
             CreateMap<GroupEntity, GroupRankingDto>()
-                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
-                .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
-                .ForMember(dest => dest.Abbreviation, opt => opt.MapFrom(src => src.Abbreviation))
-                .ForMember(dest => dest.Generation, opt => opt.MapFrom(src => src.Generation))
-                .ForMember(dest => dest.Location, opt => opt.MapFrom(src => src.Location))
-                .ForMember(dest => dest.Members, opt => opt.MapFrom(src => src.Members))
-                .ForMember(dest => dest.NumberOfProblemsTaken, opt => opt.MapFrom(src => src.Members.Count > 0 ? src.Members[0].NumberOfProblemsTaken : 0))
-                .ForMember(dest => dest.AverageNumberOfProblemsSolved,
-                    opt => opt.MapFrom(src => src.Members.Count == 0 ? 0 : src.Members.Sum(m => m.NumberOfProblemsSolved) / src.Members.Count))
-                .ForMember(dest => dest.ContestConversionRate,
-                    opt => opt.MapFrom((src, dest, member, context) => dest.NumberOfProblemsTaken != 0
+                .ForMember(dest => 
+                    dest.Id, opt => 
+                    opt.MapFrom(src => src.Id))
+                .ForMember(dest => 
+                    dest.Name, opt => 
+                    opt.MapFrom(src => src.Name))
+                .ForMember(dest => 
+                    dest.Abbreviation, opt => 
+                    opt.MapFrom(src => src.Abbreviation))
+                .ForMember(dest => 
+                    dest.Generation, opt => 
+                    opt.MapFrom(src => src.Generation))
+                .ForMember(dest => 
+                    dest.Location, opt => 
+                    opt.MapFrom(src => src.Location))
+                .ForMember(dest => 
+                    dest.Members, opt => 
+                    opt.MapFrom(src => src.Members))
+                .ForMember(dest => 
+                    dest.NumberOfProblemsTaken, opt => 
+                    opt.MapFrom(src => src.Members.Count > 0 ? src.Members[0].NumberOfProblemsTaken : 0))
+                .ForMember(dest => 
+                        dest.AverageNumberOfProblemsSolved,
+                    opt => 
+                        opt.MapFrom(src => src.Members.Count == 0 ? 0 : src.Members.Sum(m => m.NumberOfProblemsSolved) / src.Members.Count))
+                .ForMember(dest => 
+                        dest.ContestConversionRate,
+                    opt => 
+                        opt.MapFrom((src, dest, member, context) => 
+                            dest.NumberOfProblemsTaken != 0
                         ? (double)dest.NumberOfProblemsSolved / dest.NumberOfProblemsTaken
                         : 0))
-                .ForMember(dest => dest.CreatedAt, opt => opt.MapFrom(src => src.CreatedAt))
-                .ForMember(dest => dest.ModifiedAt, opt => opt.MapFrom(src => src.ModifiedAt));
+                .ForMember(dest => 
+                    dest.CreatedAt, opt => 
+                    opt.MapFrom(src => src.CreatedAt))
+                .ForMember(dest => 
+                    dest.ModifiedAt, opt => 
+                    opt.MapFrom(src => src.ModifiedAt));
             
         }
     }

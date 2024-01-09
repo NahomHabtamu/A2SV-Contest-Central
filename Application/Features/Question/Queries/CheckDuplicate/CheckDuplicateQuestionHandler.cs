@@ -3,6 +3,7 @@ using Application.DTOs.GlobalQuestion;
 using Application.DTOs.Question;
 using MediatR;
 using AutoMapper;
+using FluentValidation;
 
 namespace Application.Features.Question.Queries.CheckDuplicate;
 
@@ -19,6 +20,14 @@ public class CheckDuplicateQuestionHandler : IRequestHandler<CheckDuplicateQuest
     
     public async Task<QuestionDuplicateCheckResponseDto> Handle(CheckDuplicateQuestionRequest request, CancellationToken cancellationToken)
     {
+        var validator = new CheckDuplicateQuestionValidator();
+        var validationResult = await validator.ValidateAsync(request, cancellationToken);
+        
+        if (validationResult.Errors.Count > 0)
+        {
+            throw new ValidationException(validationResult.Errors);
+        }
+        
         var questions = await _questionRepository.GetQuestionsByGlobalQuestionUrl(request.GlobalQuestionUrl);
 
         var groups = new HashSet<string>();
@@ -29,13 +38,11 @@ public class CheckDuplicateQuestionHandler : IRequestHandler<CheckDuplicateQuest
         Console.WriteLine("count: " + groups.Count);
         var response = new QuestionDuplicateCheckResponseDto
         {
-            Status = questions.Count != 0,
+            IsDuplicated = questions.Count != 0,
             Group = groups.ToList(),
             NumberOfTimesUsed = questions.Count
         };
         
         return response;
     }
-    
-    
 }
